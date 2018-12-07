@@ -13,7 +13,7 @@ if len(sys.argv) >= 2:
     mongo_url = sys.argv[1]
 
 
-client = pymongo.MongoClient(mongo_url)
+client = pymongo.MongoClient(mongo_url,unicode_decode_error_handler="ignore")
 rs_name = client.admin.command("ismaster")["setName"]
 print("Found Replica Set name: {}".format(str(rs_name)))
 
