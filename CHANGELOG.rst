@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 3.1.3
+-------------
+
+- #443: Attempted fix for _id not stored as ObjectId
+
 Version 3.1.1
 -------------
 
