@@ -15,8 +15,7 @@
 """Tails the oplog of a shard and returns entries
 """
 
-from bson import json_util
-import json
+import bson
 import logging
 
 try:
@@ -951,15 +950,8 @@ class OplogThread(threading.Thread):
                     original_namespace = namespace
 
                 database, coll = original_namespace.split(".", 1)
-                # Updates to serialize _id as extended json
-                # Uses json_util present in pymongo 3.5+:
-                # https://riptutorial.com/pymongo/example/28949/using-json-util
-                # https://www.programcreek.com/python/example/97153/bson.json_util.loads
-                # Old function:
-                # obj_id = bson.objectid.ObjectId
-                # New function:
-                obj_id = json.loads
-                bson_obj_id_list = [obj_id(json.dumps(doc["_id"])) for doc in doc_list]
+                obj_id = bson.objectid.ObjectId
+                bson_obj_id_list = [obj_id(doc["_id"]) for doc in doc_list]
 
                 # Use connection to whole cluster if in sharded environment.
                 client = self.mongos_client or self.primary_client
@@ -972,10 +964,7 @@ class OplogThread(threading.Thread):
                 # Docs in mongo
                 doc_hash = {}  # Hash by _id
                 for doc in doc_list:
-                    # old line:
-                    # doc_hash[bson.objectid.ObjectId(doc["_id"])] = doc
-                    # new line:
-                    doc_hash[json.loads(json.dumps(doc["_id"]))] = doc
+                    doc_hash[bson.objectid.ObjectId(doc["_id"])] = doc
 
                 to_index = []
 
