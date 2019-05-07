@@ -1,6 +1,17 @@
 Changelog
 =========
 
+Version 3.1.2
+-------------
+
+- Added fix for https://github.com/yougov/mongo-connector/issues/443
+
+- Resolves error  "_id not stored as ObjectId"
+
+Pulled code changes from Faisalferoz fork here:
+
+https://github.com/faisalferoz/mongo-connector/commit/e833fd1ab379b531bcd65c13150169d49a1dd496
+
 Version 3.1.1
 -------------
 
