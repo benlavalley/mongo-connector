@@ -1212,7 +1212,7 @@ def get_config_options():
         type=bool)
 
     is_oplog_proxy.add_cli(
-        "-proxy", "--is_oplog_proxy", dest="is_oplog_proxy", help=
+        "-z", "--is_oplog_proxy", dest="is_oplog_proxy", help=
         "True if passed uri is a proxy with access to mongo"
         "oplog.rs.")
 
