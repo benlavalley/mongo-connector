@@ -1,6 +1,19 @@
 Changelog
 =========
 
+Version 3.1.3
+-------------
+
+- Adding fix for https://github.com/yougov/mongo-connector/issues/390
+
+- Pull request: https://github.com/yougov/mongo-connector/pull/751
+
+- Allows individual ElasticSearch/Mongo-Connectors to connect to specific replica set members to monitor the oplog
+
+Without this, mongo-connector tries to connect to all members of a replica st, and fails if ANY are down.
+
+- Applies changes here: https://github.com/believersconnect/mongo-connector/commit/6a0c8966ff0e39ae55e729ff2729fa4dba7d8490
+
 Version 3.1.2
 -------------
 
